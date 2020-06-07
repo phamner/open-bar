@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/app.js",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -17,8 +19,14 @@
   },
   "homepage": "https://github.com/phamner/open-bar#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "mongoose": "^5.9.18",
+    "nodemon": "^2.0.4",
     "promise": "^8.1.0",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   }
 }

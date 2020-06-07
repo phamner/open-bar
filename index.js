@@ -34,7 +34,7 @@ const populateArrayWithDrinks = function(){
 
 // populateArrayWithDrinks();
 populateArrayWithDrinks()
-.then(function() {
-  console.log(arrayOfDrinks);
-})
+// .then(function() {
+//   console.log(arrayOfDrinks);
+// })
 
