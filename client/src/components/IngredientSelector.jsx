@@ -1,38 +1,18 @@
 import React from 'react';
+import Ingredient from './Ingredient.jsx';
 
-const IngredientSelector = function(){
+const IngredientSelector = function(props){
+  const arrayOfIngredients = Object.keys(props.incredients);
   return(
     <div>
-      <h3>hello from ingredient selector!</h3>
-
+      <h3>Select the Ingredients in your Bar</h3>
       <form>
         Filter: <input type="text" name="name" />
-        <br />
-
-        <label>
-          Vodka:
-          <input name="Vodka" type="checkbox"/>
-          <br />
-
-          Gin:
-          <input name="Gin" type="checkbox"/>
-          <br />
-
-          Rum:
-          <input name="Rum" type="checkbox"/>
-          <br />
-
-          Tequila:
-          <input name="Tequila" type="checkbox"/>
-          <br />
-
-          Scotch:
-          <input name="Scotch" type="checkbox"/>
-          <br />
-
-        </label>
-
       </form>
+      <br />
+      {console.log(arrayOfIngredients)}
+      {arrayOfIngredients.map(item => <Ingredient item={item} key={item} addItemToBar={props.addItemToBar}/>)}
+
     </div>
   )
 }
