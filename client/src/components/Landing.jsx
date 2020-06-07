@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
-class Form extends Component {
+class Landing extends Component {
   constructor() {
     super();
 
@@ -25,19 +25,12 @@ class Form extends Component {
     return (
       <div>
         <h1>
-          hello world from react
+          hello world from reactsdfasdftttttt
         </h1>
-        <form>
-          <input
-            type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-        </form>
       </div>
     );
   }
 }
 
-export default Form;
+export default Landing;
 

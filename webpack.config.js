@@ -5,7 +5,7 @@ var DIST_DIR = path.join(__dirname, '/client/dist');
 
 
 module.exports = {
-  entry : "./client/src/index.js",
+  entry : "./client/src/index.jsx",
   // devtool: 'source-map',
   output: {
     filename: 'bundle.js',
