@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server/app.js",
-    "build": "webpack --mode production"
+    "build": "webpack -d --watch"
   },
   "repository": {
     "type": "git",
@@ -22,11 +22,21 @@
     "express": "^4.17.1",
     "mongoose": "^5.9.18",
     "nodemon": "^2.0.4",
+    "path": "^0.12.7",
     "promise": "^8.1.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "request": "^2.88.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "babel-loader": "^8.1.0",
+    "html-loader": "^1.1.0",
+    "html-webpack-plugin": "^4.3.0",
     "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
   }
 }
