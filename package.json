@@ -26,7 +26,8 @@
     "promise": "^8.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "styled-components": "^5.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
