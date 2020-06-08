@@ -8,6 +8,8 @@ const path = require('path');
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 
-app.get('/', (req, res) => res.send('Hello Worldddd!'))
+app.get('/', (req, res) => res.send('Hello Worldddd!'));
+
+
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))

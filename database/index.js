@@ -3,7 +3,7 @@ const request = require('request');
 
 //Mongoose:
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/testkittiesbeforedrinks', {useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost/openbar', {useNewUrlParser: true, useUnifiedTopology: true });
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

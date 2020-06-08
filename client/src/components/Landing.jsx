@@ -483,9 +483,12 @@ class Landing extends Component {
       St_Germain: false,    //St._Germain
       Lavender: false,
       Whiskey: false,
-      Whisky: false
+      Whisky: false,
+      filterDrinks: '',
+      Page: 'Landing'
     };
     this.addItemToBar = this.addItemToBar.bind(this);
+    this.handleFilterChange = this.handleFilterChange.bind(this);
   }
 
   addItemToBar(event){
@@ -496,13 +499,20 @@ class Landing extends Component {
     console.log(`The state of ${event.target.id} is ${this.state[event.target.id]}`)
   }
 
+  handleFilterChange(event){
+    this.setState({
+      filterDrinks: event.target.value
+    })
+    // this.props.onChange(event.target.value)
+  }
+
   render() {
     return (
       <div>
         <h1>
           Welcome to Open Bar
         </h1>
-        <IngredientSelector addItemToBar={this.addItemToBar} ingredients={this.state}/>
+        <IngredientSelector addItemToBar={this.addItemToBar} ingredients={this.state} handleFilterChange={this.handleFilterChange}/>
       </div>
     );
   }
