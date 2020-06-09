@@ -20,23 +20,20 @@ app.get('/drinks', function (req, res) {
   });
  })
 
- app.get('/ingredients', function (req, res) {
+app.get('/ingredients', function (req, res) {
   getAllIngredients((data) => {
     res.send(data);
   });
- })
+})
 
- app.post('/ingredients', function (req, res) {
-   res.send('POST request to the server');
-   let state = req.body;
-  //  state['filterDrinks'] = undefined;
-  //  delete state.Page;
+app.get(`https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=Dry_Vermouth`, function (req, res) {
+  res.send(res)
+})
 
-  //  console.log(state);
-   updateIngredients(state)
- })
-
-
-
+app.post('/ingredients', function (req, res) {
+  res.send('POST request to the server');
+  let state = req.body;
+  updateIngredients(state)
+})
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))

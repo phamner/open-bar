@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Drink = function(){
+const Drink = function(props){
+  // console.log(props)
   return (
     <div>
       hello from drink page!

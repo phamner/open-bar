@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Drink from './Drink.jsx';
 
 const Button = styled.button`
   background: "white";
@@ -20,6 +21,18 @@ const DrinkList = function(props){
         Drink list component!
       </h3>
       <Button onClick={props.renderLanding}>Return to Ingredients</Button>
+
+
+      {/* MUST COME BACK AND FIX THE ASYNCROUNOUS ERROR HERE, MAYBE USING componentWillUnmount??? */}
+      {/* {console.log('drinklist: ', props.listOfDrinks)} */}
+      {/* {props.listOfDrinks.map(drink => <Drink drink={drink} renderCompleteDrinkInfo={props.renderCompleteDrinkInfo}/>)} */}
+
+      <div>
+        <img src={props.selectedItem.strDrinkThumb} alt="Logo" />
+        <p>{props.selectedItem.strDrink}</p>
+      </div>
+
+
     </div>
   )
 }

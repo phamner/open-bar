@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
+
 import IngredientSelector from './IngredientSelector.jsx';
 import DrinkList from './DrinkList.jsx';
 import Drink from './Drink.jsx';
-import axios from 'axios';
+import CompleteDrinkInfo from './CompleteDrinkInfo.jsx';
+
 
 // const incredients = require('../../../database/allIngredients')
 
@@ -489,7 +492,13 @@ class Landing extends Component {
       Whisky: false,
       filterDrinks: '',
       Page: 'Landing',
-      ingredientCounter: 0
+      ingredientCounter: 0,
+      selectedItem: {
+        "strDrink": "Abbey Cocktail",
+        "strDrinkThumb": "https://www.thecocktaildb.com/images/media/drink/mr30ob1582479875.jpg",
+        "idDrink": "17834"
+      },
+      listOfDrinks: {}
     };
 
     this.addItemToBar = this.addItemToBar.bind(this);
@@ -498,6 +507,8 @@ class Landing extends Component {
     this.renderLanding = this.renderLanding.bind(this);
     this.saveIngredients = this.saveIngredients.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
+    this.renderCompleteDrinkInfo = this.renderCompleteDrinkInfo.bind(this);
+
 
 
   }
@@ -511,9 +522,7 @@ class Landing extends Component {
         if (response.data[0][key] === true || response.data[0][key] === 'true') {
           count++;
         }
-        // console.log(`${response.data[0][key]}`);
       }
-      // console.log(count)
 
       this.setState({
         Vodka: JSON.parse(response.data[0].Vodka),
@@ -994,7 +1003,6 @@ class Landing extends Component {
         ingredientCounter: count
       })
 
-
     })
     .catch(error => {
       // handle error
@@ -1018,12 +1026,37 @@ class Landing extends Component {
     this.setState({
       Page: 'DrinkList'
     })
+
+    console.log('ORDER UP')
+
+    axios.get('https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=Dry_Vermouth')
+    .then(response => {
+      // handle success
+      // console.log(response.data.drinks);
+
+      this.setState({
+        listOfDrinks: response.data.drinks
+      })
+    })
+    .catch(error => {
+      // handle error
+      console.log(error);
+    })
+    .then(() => {
+      // always executed
+    });
   }
 
   renderLanding(){
     this.setState({
       Page: 'Landing',
       filterDrinks: ''
+    })
+  }
+
+  renderCompleteDrinkInfo(){
+    this.setState({
+      Page: 'CompleteDrinkInfo'
     })
   }
 
@@ -1069,7 +1102,16 @@ class Landing extends Component {
           <h1>
             Welcome to Open Bar
           </h1>
-          <DrinkList renderLanding={this.renderLanding} />
+          <DrinkList renderLanding={this.renderLanding} selectedItem={this.state.selectedItem} listOfDrinks={this.state.listOfDrinks} renderCompleteDrinkInfo={this.renderCompleteDrinkInfo}/>
+        </div>
+      )
+    } else if (this.state.Page === 'CompleteDrinkInfo') {
+      return (
+        <div>
+          <h1>
+          CompleteDrinkInfo
+          </h1>
+          <CompleteDrinkInfo selectedItem={this.state.selectedItem} />
         </div>
       )
     }

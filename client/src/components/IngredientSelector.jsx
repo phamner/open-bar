@@ -18,7 +18,6 @@ const Button = styled.button`
 
 const IngredientSelector = function(props){
   const arrayOfIngredients = Object.keys(props.ingredients);
-  // console.log(props)
 
   return(
     <div>
@@ -30,7 +29,6 @@ const IngredientSelector = function(props){
       </form>
       <br />
       {/* {console.log(props.ingredients.filterDrinks)} */}
-      {/* {arrayOfIngredients.map(item => <Ingredient item={item} key={item} trueFalse={props.ingredients[item]} addItemToBar={props.addItemToBar}/>)} */}
 
       {arrayOfIngredients.filter(item =>
         item.toLowerCase().includes(props.ingredients.filterDrinks.toLowerCase()))
