@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import IngredientSelector from './IngredientSelector.jsx';
-import DrinkList from './DrinkList.jsx'
+import DrinkList from './DrinkList.jsx';
+import Drink from './Drink.jsx';
+import axios from 'axios';
 
 // const incredients = require('../../../database/allIngredients')
 
@@ -526,7 +528,17 @@ class Landing extends Component {
   }
 
   saveIngredients(){
-    console.log('saving your ingredients to db')
+    // console.log('saving your ingredients to db');
+    axios.post('/ingredients', {
+      ingredientData: this.state
+    })
+    .then(function (response) {
+      // console.log(response);
+    })
+    .catch(function (error) {
+      // console.log(error);
+    });
+
   }
 
   render() {

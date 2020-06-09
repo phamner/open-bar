@@ -29,16 +29,12 @@ const IngredientSelector = function(props){
         Filter Ingredients: <input type="text" name="name" onChange={props.handleFilterChange}/>
       </form>
       <br />
-      {console.log(props.ingredients.filterDrinks)}
+      {/* {console.log(props.ingredients.filterDrinks)} */}
       {/* {arrayOfIngredients.map(item => <Ingredient item={item} key={item} trueFalse={props.ingredients[item]} addItemToBar={props.addItemToBar}/>)} */}
-
 
       {arrayOfIngredients.filter(item =>
         item.toLowerCase().includes(props.ingredients.filterDrinks.toLowerCase()))
         .map(item => <Ingredient item={item} key={item} trueFalse={props.ingredients[item]} addItemToBar={props.addItemToBar}/>)}
-
-
-{/* props.ingredients.filterDrinks.toLowerCase() */}
 
     </div>
   )
