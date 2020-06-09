@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import IngredientSelector from './IngredientSelector.jsx';
+import DrinkList from './DrinkList.jsx'
 
 // const incredients = require('../../../database/allIngredients')
 
@@ -487,8 +488,13 @@ class Landing extends Component {
       filterDrinks: '',
       Page: 'Landing'
     };
+
     this.addItemToBar = this.addItemToBar.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.renderDrinkList = this.renderDrinkList.bind(this);
+    this.renderLanding = this.renderLanding.bind(this);
+    this.saveIngredients = this.saveIngredients.bind(this);
+
   }
 
   addItemToBar(event){
@@ -499,6 +505,19 @@ class Landing extends Component {
     console.log(`The state of ${event.target.id} is ${this.state[event.target.id]}`)
   }
 
+  renderDrinkList(){
+    this.setState({
+      Page: 'DrinkList'
+    })
+  }
+
+  renderLanding(){
+    this.setState({
+      Page: 'Landing',
+      filterDrinks: ''
+    })
+  }
+
   handleFilterChange(event){
     this.setState({
       filterDrinks: event.target.value
@@ -506,17 +525,48 @@ class Landing extends Component {
     // this.props.onChange(event.target.value)
   }
 
+  saveIngredients(){
+    console.log('saving your ingredients to db')
+  }
+
   render() {
-    return (
-      <div>
-        <h1>
-          Welcome to Open Bar
-        </h1>
-        <IngredientSelector addItemToBar={this.addItemToBar} ingredients={this.state} handleFilterChange={this.handleFilterChange}/>
-      </div>
-    );
+    if (this.state.Page === 'Landing') {
+      return (
+        <div>
+          <h1>
+            Welcome to Open Bar
+          </h1>
+          <IngredientSelector
+            addItemToBar={this.addItemToBar}
+            ingredients={this.state}
+            handleFilterChange={this.handleFilterChange}
+            renderDrinkList={this.renderDrinkList}
+            saveIngredients={this.saveIngredients}/>
+        </div>
+      )
+    } else if (this.state.Page === 'DrinkList') {
+      return (
+        <div>
+          <h1>
+            Welcome to Open Bar
+          </h1>
+          <DrinkList renderLanding={this.renderLanding} />
+        </div>
+      )
+    }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 export default Landing;
 

@@ -1063,12 +1063,26 @@ module.exports = {
       Whiskey: false,
       Whisky: false
     });
+    // mongoose.connection.db.dropCollection('foo', function(err, result) {...});
+
+
+    Ingredient.deleteOne({ }, function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('success in deleting the record in db')
+      }
+      // deleted at most one tank document
+    });
+
+
+
     currentIngredients.save(function (err, currentDrink) {
       if (err){
         console.log(err)
       }
       else {
-        console.log(`success in logging ingredients to mongo`)
+        console.log(`success in adding ingredients to db`)
       }
     })
   },
@@ -1084,7 +1098,7 @@ module.exports = {
 }
 
 
-
+module.exports.updateIngredients()
 
 
 
