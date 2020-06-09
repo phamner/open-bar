@@ -8,8 +8,8 @@ import axios from 'axios';
 // const incredients = require('../../../database/allIngredients')
 
 class Landing extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       Vodka: false,
@@ -496,6 +496,41 @@ class Landing extends Component {
     this.renderDrinkList = this.renderDrinkList.bind(this);
     this.renderLanding = this.renderLanding.bind(this);
     this.saveIngredients = this.saveIngredients.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+
+
+  }
+
+  componentDidMount(){
+    axios.get('/ingredients')
+    .then(response => {
+      // handle success
+      // console.log('hello on the front end, has loaded,')
+      // this.setState({
+      //   Vodka: true
+      // })
+
+      let ingredientsFromDB = response.data[0];
+
+      for (let [key, value] of Object.entries(response.data[0])) {
+        console.log(`${key}: ${value}`);
+        this.setState({
+          [key]: value
+        });
+      }
+
+      // this.setState({
+      //   [event.target.id]: !this.state[event.target.id]
+      // });
+
+    })
+    .catch(error => {
+      // handle error
+      console.log(error);
+    })
+    .finally(() => {
+      // always executed
+    });
 
   }
 
@@ -504,7 +539,7 @@ class Landing extends Component {
     this.setState({
       [event.target.id]: !this.state[event.target.id]
     });
-    console.log(`The state of ${event.target.id} is ${this.state[event.target.id]}`)
+    // console.log(`The state of ${event.target.id} is ${this.state[event.target.id]}`)
   }
 
   renderDrinkList(){
