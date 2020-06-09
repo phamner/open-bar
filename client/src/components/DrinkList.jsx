@@ -15,26 +15,29 @@ const Button = styled.button`
 
 
 const DrinkList = function(props){
-  if (props.listOfDrinks.length > 0 ) {
-    return(
-      <div>
+  // if (props.listOfDrinks.length > 0 ) {
+    // let drinks = props.listOfDrinks;
+    // console.log(drinks)
 
-        <Button onClick={props.renderLanding}>Return to Ingredients</Button>
-        {console.log(props.listOfDrinks)}
+    // if (drinks.length === 0 || drinks === undefined) {
+    //   return(
+    //     <div>
+    //     No drinks available, sorry!
+    //     </div>
+    //   )
+    // } else {
+      return(
+        <div>
 
-        {/* MUST COME BACK AND FIX THE ASYNCROUNOUS ERROR HERE, MAYBE USING componentWillUnmount??? */}
-        {props.listOfDrinks.map(drink => <Drink drink={drink} renderCompleteDrinkInfo={props.renderCompleteDrinkInfo} key={props.listOfDrinks.idDrink}/>)}
+          <Button onClick={props.renderLanding}>Return to Ingredients</Button>
+          {console.log(props.listOfDrinks)}
 
-      </div>
-    )
-  }
-  else {
-    return(
-      <div>
-        no drinks :/
-      </div>
-    )
-  }
-}
+          {/* MUST COME BACK AND FIX THE ASYNCROUNOUS ERROR HERE, MAYBE USING componentWillUnmount??? */}
+          {props.listOfDrinks.map(drink => <Drink drink={drink} renderCompleteDrinkInfo={props.renderCompleteDrinkInfo} key={props.listOfDrinks.idDrink}/>)}
+
+        </div>
+      )
+    // }
+    }
 
 export default DrinkList;

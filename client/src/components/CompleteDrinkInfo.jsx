@@ -12,13 +12,22 @@ const Button = styled.button`
   border-radius: 3px;
 `;
 
+const Image = styled.img`
+  height: 300px;
+
+  display: block;
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 3px;
+`;
+
 const CompleteDrinkInfo = function(props){
   return(
     <div>
       <h2>{props.selectedItem.strDrink}</h2>
       <Button onClick={props.renderDrinkList}>Return to Drink list</Button>
       <br />
-      <img src={props.selectedItem.strDrinkThumb} alt="Logo" onClick={props.renderCompleteDrinkInfo}/>
+      <Image src={props.selectedItem.strDrinkThumb} alt="Logo"/>
       <p>Instructions: {props.selectedItem.strInstructions}</p>
       <p>Ingredients:</p>
       <p>{props.selectedItem.strIngredient1}</p>

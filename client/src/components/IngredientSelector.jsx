@@ -23,6 +23,7 @@ const IngredientSelector = function(props){
     <div>
       <h3>Select the Ingredients in your Bar</h3>
       <Button onClick={props.saveIngredients}>Save Your Ingredients</Button>
+      <Button onClick={props.clearIngredients}>Clear Ingredients</Button>
       <Button onClick={props.renderDrinkList}>Order Up!</Button>
       <form>
         Filter Ingredients ({props.ingredients.ingredientCounter} currently selected): <input type="text" name="name" onChange={props.handleFilterChange}/>
