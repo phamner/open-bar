@@ -488,7 +488,8 @@ class Landing extends Component {
       Whiskey: false,
       Whisky: false,
       filterDrinks: '',
-      Page: 'Landing'
+      Page: 'Landing',
+      ingredientCounter: 0
     };
 
     this.addItemToBar = this.addItemToBar.bind(this);
@@ -505,6 +506,14 @@ class Landing extends Component {
     axios.get('/ingredients')
     .then(response => {
       // handle success
+      let count = 0;
+      for (var key in response.data[0]) {
+        if (response.data[0][key] === true || response.data[0][key] === 'true') {
+          count++;
+        }
+        // console.log(`${response.data[0][key]}`);
+      }
+      // console.log(count)
 
       this.setState({
         Vodka: JSON.parse(response.data[0].Vodka),
@@ -981,7 +990,8 @@ class Landing extends Component {
         St_Germain: JSON.parse(response.data[0].St_Germain),
         Lavender: JSON.parse(response.data[0].Lavender),
         Whiskey: JSON.parse(response.data[0].Whiskey),
-        Whisky: JSON.parse(response.data[0].Whisky)
+        Whisky: JSON.parse(response.data[0].Whisky),
+        ingredientCounter: count
       })
 
 
