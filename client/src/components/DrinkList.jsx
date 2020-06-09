@@ -30,7 +30,7 @@ const DrinkList = function(props){
         <div>
 
           <Button onClick={props.renderLanding}>Return to Ingredients</Button>
-          {console.log(props.listOfDrinks)}
+          {/* {console.log(props.listOfDrinks)} */}
 
           {/* MUST COME BACK AND FIX THE ASYNCROUNOUS ERROR HERE, MAYBE USING componentWillUnmount??? */}
           {props.listOfDrinks.map(drink => <Drink drink={drink} renderCompleteDrinkInfo={props.renderCompleteDrinkInfo} key={props.listOfDrinks.idDrink}/>)}

@@ -1572,7 +1572,7 @@ class Landing extends Component {
       }
     }
 
-    console.log(params)
+    // console.log(params)
 
     let search = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=' + params;
 
