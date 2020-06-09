@@ -494,11 +494,63 @@ class Landing extends Component {
       Page: 'Landing',
       ingredientCounter: 0,
       selectedItem: {
-        "strDrink": "Abbey Cocktail",
-        "strDrinkThumb": "https://www.thecocktaildb.com/images/media/drink/mr30ob1582479875.jpg",
-        "idDrink": "17834"
+        // "_id" : ObjectId("5edeaa9643ab461e591c9f75"),
+        "idDrink" : "178319",
+        "strDrink" : "Aquamarine",
+        "strDrinkAlternate" : null,
+        "strDrinkES" : null,
+        "strDrinkDE" : null,
+        "strDrinkFR" : null,
+        "strDrinkZH-HANS" : null,
+        "strDrinkZH-HANT" : null,
+        "strTags" : null,
+        "strVideo" : null,
+        "strCategory" : "Cocktail",
+        "strIBA" : null,
+        "strAlcoholic" : "Alcoholic",
+        "strGlass" : "Martini Glass",
+        "strInstructions" : "Shake well in a shaker with ice.\r\nStrain in a martini glass.",
+        "strInstructionsES" : null,
+        "strInstructionsDE" : null,
+        "strInstructionsFR" : null,
+        "strInstructionsZH-HANS" : null,
+        "strInstructionsZH-HANT" : null,
+        "strDrinkThumb" : "https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg",
+        "strIngredient1" : "Hpnotiq",
+        "strIngredient2" : "Pineapple Juice",
+        "strIngredient3" : "Banana Liqueur",
+        "strIngredient4" : "",
+        "strIngredient5" : "",
+        "strIngredient6" : "",
+        "strIngredient7" : "",
+        "strIngredient8" : null,
+        "strIngredient9" : null,
+        "strIngredient10" : null,
+        "strIngredient11" : null,
+        "strIngredient12" : null,
+        "strIngredient13" : null,
+        "strIngredient14" : null,
+        "strIngredient15" : null,
+        "strMeasure1" : "2 oz",
+        "strMeasure2" : "1 oz",
+        "strMeasure3" : "1 oz",
+        "strMeasure4" : "",
+        "strMeasure5" : "",
+        "strMeasure6" : "",
+        "strMeasure7" : "",
+        "strMeasure8" : null,
+        "strMeasure9" : null,
+        "strMeasure10" : null,
+        "strMeasure11" : null,
+        "strMeasure12" : null,
+        "strMeasure13" : null,
+        "strMeasure14" : null,
+        "strMeasure15" : null,
+        "strCreativeCommonsConfirmed" : "No",
+        "dateModified" : null,
+        "__v" : 0
       },
-      listOfDrinks: {}
+      listOfDrinks: [{idDrink: 1},{idDrink: 2}]
     };
 
     this.addItemToBar = this.addItemToBar.bind(this);
@@ -508,9 +560,6 @@ class Landing extends Component {
     this.saveIngredients = this.saveIngredients.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.renderCompleteDrinkInfo = this.renderCompleteDrinkInfo.bind(this);
-
-
-
   }
 
   componentDidMount(){
@@ -1027,9 +1076,21 @@ class Landing extends Component {
       Page: 'DrinkList'
     })
 
-    console.log('ORDER UP')
+    let params = [];
 
-    axios.get('https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=Dry_Vermouth')
+    for (var key in this.state) {
+      if(this.state[key] === true || this.state[key] === 'true') {
+        params.push(key)
+      }
+    }
+
+    console.log(params)
+
+    let search = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=' + params;
+
+    // console.log('ORDER UP')
+
+    axios.get(search)
     .then(response => {
       // handle success
       // console.log(response.data.drinks);
@@ -1086,7 +1147,7 @@ class Landing extends Component {
       return (
         <div>
           <h1>
-            Welcome to Open Bar
+            Open Bar
           </h1>
           <IngredientSelector
             addItemToBar={this.addItemToBar}
@@ -1100,7 +1161,7 @@ class Landing extends Component {
       return (
         <div>
           <h1>
-            Welcome to Open Bar
+            Open Bar
           </h1>
           <DrinkList renderLanding={this.renderLanding} selectedItem={this.state.selectedItem} listOfDrinks={this.state.listOfDrinks} renderCompleteDrinkInfo={this.renderCompleteDrinkInfo}/>
         </div>
@@ -1109,9 +1170,9 @@ class Landing extends Component {
       return (
         <div>
           <h1>
-          CompleteDrinkInfo
+          Open Bar
           </h1>
-          <CompleteDrinkInfo selectedItem={this.state.selectedItem} />
+          <CompleteDrinkInfo selectedItem={this.state.selectedItem} renderDrinkList={this.renderDrinkList}/>
         </div>
       )
     }
