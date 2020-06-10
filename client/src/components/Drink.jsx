@@ -1,15 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// const Image = styled.img`
-  // height: 120px;
-
-//   display: block;
-//   position: relative;
-//   cursor: pointer;
-//   margin-bottom: 3px;
-// `;
-
 const Div = styled.div`
   margin: 20px;
 
@@ -17,7 +8,6 @@ const Div = styled.div`
     background: #eee;
     cursor: pointer;
   }
-
 `
 
 const Ul = styled.div`
@@ -43,15 +33,10 @@ const Li = styled.div`
   overflow: auto;
 `
 
-// li:hover {
-//   background: #eee;
-//   cursor: pointer;
-// }
-
 const Image = styled.img`
   float: left;
   margin: 0 15px 0 0;
-  height: 120px;
+  height: 200px;
 
 `;
 
@@ -59,10 +44,10 @@ const Image = styled.img`
 const Drink = function(props){
   // console.log(props.drink.idDrink)
   return (
-    <Div>
+    <Div onClick={() => {props.renderCompleteDrinkInfo(props.drink.idDrink)}}>
       <Ul>
         <Li>
-          <Image src={props.drink.strDrinkThumb} alt="Logo" id={props.drink.idDrink} onClick={() => {props.renderCompleteDrinkInfo(props.drink.idDrink)}}/>
+          <Image src={props.drink.strDrinkThumb} alt="Logo" id={props.drink.idDrink} />
           <H3>{props.drink.strDrink}</H3>
         </Li>
       </Ul>

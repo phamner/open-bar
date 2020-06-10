@@ -1648,9 +1648,9 @@ class Landing extends Component {
     if (this.state.Page === 'Landing') {
       return (
         <div>
-          <h1>
+          {/* <h1>
             Open Bar
-          </h1>
+          </h1> */}
           <IngredientSelector
             addItemToBar={this.addItemToBar}
             ingredients={this.state}
@@ -1665,9 +1665,9 @@ class Landing extends Component {
     } else if (this.state.Page === 'DrinkList') {
       return (
         <div>
-          <h1>
+          {/* <h1>
             Open Bar
-          </h1>
+          </h1> */}
           <DrinkList
           renderLanding={this.renderLanding}
           selectedItem={this.state.selectedItem}
@@ -1678,9 +1678,9 @@ class Landing extends Component {
     } else if (this.state.Page === 'CompleteDrinkInfo') {
       return (
         <div>
-          <h1>
+          {/* <h1>
           Open Bar
-          </h1>
+          </h1> */}
           <CompleteDrinkInfo renderLanding={this.renderLanding} selectedItem={this.state.selectedItem} renderDrinkList={this.renderDrinkList}/>
         </div>
       )
