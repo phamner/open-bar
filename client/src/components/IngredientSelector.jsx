@@ -25,6 +25,10 @@ const IngredientSelector = function(props){
       <Button onClick={props.saveIngredients}>Save Your Ingredients</Button>
       <Button onClick={props.clearIngredients}>Clear Ingredients</Button>
       <Button onClick={props.renderDrinkList}>Order Up!</Button>
+      <br />
+      <Button onClick={props.findRandomDrink}>Random Drink</Button>
+      <Button onClick={props.findTopCocktails}>Classic Drinks</Button>
+
       <form>
         Filter Ingredients ({props.ingredients.ingredientCounter} currently selected): <input type="text" name="name" onChange={props.handleFilterChange}/>
       </form>

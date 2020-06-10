@@ -16,7 +16,7 @@ const Drink = function(props){
   return (
     <div>
       <h4>{props.drink.strDrink}</h4>
-      <Image src={props.drink.strDrinkThumb} alt="Logo" id={props.drink.idDrink} onClick={props.renderCompleteDrinkInfo}/>
+      <Image src={props.drink.strDrinkThumb} alt="Logo" id={props.drink.idDrink} onClick={() => {props.renderCompleteDrinkInfo(props.drink.idDrink)}}/>
     </div>
   )
 }

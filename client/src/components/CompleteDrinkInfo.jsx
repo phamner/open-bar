@@ -26,6 +26,8 @@ const CompleteDrinkInfo = function(props){
     <div>
       <h2>{props.selectedItem.strDrink}</h2>
       <Button onClick={props.renderDrinkList}>Return to Drink list</Button>
+      <Button onClick={props.renderLanding}>Return to Ingredients</Button>
+
       <br />
       <Image src={props.selectedItem.strDrinkThumb} alt="Logo"/>
       <p>Instructions: {props.selectedItem.strInstructions}</p>

@@ -563,6 +563,9 @@ class Landing extends Component {
     this.clearIngredients = this.clearIngredients.bind(this);
     // this.getFullDrinkInfo = this.getFullDrinkInfo.bind(this);
 
+    this.findRandomDrink = this.findRandomDrink.bind(this);
+    this.findTopCocktails = this.findTopCocktails.bind(this);
+
 
   }
 
@@ -1069,15 +1072,23 @@ class Landing extends Component {
 
   addItemToBar(event){
     // console.log('ingredient is here: ', ingredient);
+    let tempCounter = 0
+    if (this.state[event.target.id] === false) {
+      tempCounter++;
+    } else {
+      tempCounter--;
+    }
+
+    this.setState(prevState => {
+      return {ingredientCounter: prevState.ingredientCounter + tempCounter}
+   })
+
     this.setState({
       [event.target.id]: !this.state[event.target.id]
+
     });
     // console.log(`The state of ${event.target.id} is ${this.state[event.target.id]}`)
   }
-
-  // findRandomDrink(){
-
-  // }
 
   clearIngredients(){
     this.setState({
@@ -1555,14 +1566,13 @@ class Landing extends Component {
       St_Germain: false,    //St._Germain
       Lavender: false,
       Whiskey: false,
-      Whisky: false
+      Whisky: false,
+      ingredientCounter: 0
     })
   }
 
   renderDrinkList(){
-    this.setState({
-      Page: 'DrinkList'
-    })
+
 
     let params = [];
 
@@ -1572,23 +1582,20 @@ class Landing extends Component {
       }
     }
 
-    // console.log(params)
-
+    // let allDrinks = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic'
     let search = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=' + params;
 
-    // console.log('ORDER UP')
+    // if (params.length < 1) {
+    //   console.log('no parameters')
+    // } else {
+    //   console.log(params.length)
+
+    // }
 
     axios.get(search)
     .then(response => {
       // handle success
-      // console.log(response.data.drinks);
-      // console.log('response data from db, appearing on FE: ', (response.data.drinks))
-      // if (typeof(response.data.drinks) === 'String') {
-      //   this.setState({
-      //     listOfDrinks: [{idDrink: 1},{idDrink: 2}]
-      //   })
-      // } else {
-
+      console.log('response: ', response)
       this.setState({
         listOfDrinks: response.data.drinks
       })
@@ -1605,6 +1612,10 @@ class Landing extends Component {
     .then(() => {
       // always executed
     });
+
+    this.setState({
+      Page: 'DrinkList'
+    })
   }
 
   renderLanding(){
@@ -1614,15 +1625,34 @@ class Landing extends Component {
     })
   }
 
-  renderCompleteDrinkInfo(){
-    // console.log('querying database for full drink info')
-    // let search = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=' + params;
-    let searchForDrink = `https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=` + '12434';
+  renderCompleteDrinkInfo(idNumber){
+    let searchForDrink = `https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=` + idNumber;
 
     axios.get(searchForDrink)
     .then( (response) => {
       // handle success
-      // console.log('MY DRINK INFO: ', response.data);
+      this.setState({
+        selectedItem: response.data.drinks[0]
+      })
+    })
+    .catch( (error) => {
+      // handle error
+      console.log(error);
+    })
+    .then( () => {
+      // always executed
+    });
+
+    this.setState({
+      Page: 'CompleteDrinkInfo'
+    })
+  }
+
+  findRandomDrink(){
+    axios.get('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+    .then( (response) => {
+
+      console.log(response.data.drinks[0])
       this.setState({
         selectedItem: response.data.drinks[0]
 
@@ -1637,14 +1667,34 @@ class Landing extends Component {
       // always executed
     });
 
-
-
-
-
-
     this.setState({
       Page: 'CompleteDrinkInfo'
     })
+
+  }
+
+  findTopCocktails(){
+    axios.get('https://www.thecocktaildb.com/api/json/v2/9973533/popular.php')
+    .then( (response) => {
+
+      console.log(response.data)
+      this.setState({
+        listOfDrinks: response.data.drinks
+
+      })
+
+    })
+    .catch( (error) => {
+      // handle error
+      console.log(error);
+    })
+    .then( () => {
+      // always executed
+    });
+    this.setState({
+      Page: 'DrinkList'
+    })
+
   }
 
   handleFilterChange(event){
@@ -1685,7 +1735,9 @@ class Landing extends Component {
             handleFilterChange={this.handleFilterChange}
             renderDrinkList={this.renderDrinkList}
             saveIngredients={this.saveIngredients}
-            clearIngredients={this.clearIngredients}/>
+            clearIngredients={this.clearIngredients}
+            findRandomDrink={this.findRandomDrink}
+            findTopCocktails={this.findTopCocktails}/>
         </div>
       )
     } else if (this.state.Page === 'DrinkList') {
@@ -1707,7 +1759,7 @@ class Landing extends Component {
           <h1>
           Open Bar
           </h1>
-          <CompleteDrinkInfo selectedItem={this.state.selectedItem} renderDrinkList={this.renderDrinkList}/>
+          <CompleteDrinkInfo renderLanding={this.renderLanding} selectedItem={this.state.selectedItem} renderDrinkList={this.renderDrinkList}/>
         </div>
       )
     }
