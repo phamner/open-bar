@@ -6,10 +6,6 @@ import IngredientSelector from './IngredientSelector.jsx';
 import DrinkList from './DrinkList.jsx';
 import Drink from './Drink.jsx';
 import CompleteDrinkInfo from './CompleteDrinkInfo.jsx';
-
-
-// const incredients = require('../../../database/allIngredients')
-
 class Landing extends Component {
   constructor(props) {
     super(props);
@@ -493,64 +489,8 @@ class Landing extends Component {
       filterDrinks: '',
       Page: 'Landing',
       ingredientCounter: 0,
-      selectedItem: {
-        // "_id" : ObjectId("5edeaa9643ab461e591c9f75"),
-        "idDrink" : "178319",
-        "strDrink" : "Aquamarine",
-        "strDrinkAlternate" : null,
-        "strDrinkES" : null,
-        "strDrinkDE" : null,
-        "strDrinkFR" : null,
-        "strDrinkZH-HANS" : null,
-        "strDrinkZH-HANT" : null,
-        "strTags" : null,
-        "strVideo" : null,
-        "strCategory" : "Cocktail",
-        "strIBA" : null,
-        "strAlcoholic" : "Alcoholic",
-        "strGlass" : "Martini Glass",
-        "strInstructions" : "Shake well in a shaker with ice.\r\nStrain in a martini glass.",
-        "strInstructionsES" : null,
-        "strInstructionsDE" : null,
-        "strInstructionsFR" : null,
-        "strInstructionsZH-HANS" : null,
-        "strInstructionsZH-HANT" : null,
-        "strDrinkThumb" : "https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg",
-        "strIngredient1" : "Hpnotiq",
-        "strIngredient2" : "Pineapple Juice",
-        "strIngredient3" : "Banana Liqueur",
-        "strIngredient4" : "",
-        "strIngredient5" : "",
-        "strIngredient6" : "",
-        "strIngredient7" : "",
-        "strIngredient8" : null,
-        "strIngredient9" : null,
-        "strIngredient10" : null,
-        "strIngredient11" : null,
-        "strIngredient12" : null,
-        "strIngredient13" : null,
-        "strIngredient14" : null,
-        "strIngredient15" : null,
-        "strMeasure1" : "2 oz",
-        "strMeasure2" : "1 oz",
-        "strMeasure3" : "1 oz",
-        "strMeasure4" : "",
-        "strMeasure5" : "",
-        "strMeasure6" : "",
-        "strMeasure7" : "",
-        "strMeasure8" : null,
-        "strMeasure9" : null,
-        "strMeasure10" : null,
-        "strMeasure11" : null,
-        "strMeasure12" : null,
-        "strMeasure13" : null,
-        "strMeasure14" : null,
-        "strMeasure15" : null,
-        "strCreativeCommonsConfirmed" : "No",
-        "dateModified" : null,
-        "__v" : 0
-      },
-      listOfDrinks: [{strDrink: "NO DRINKS MATCH YOUR CRITERIA", strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg", idDrink: "15346"}]
+      selectedItem: {},
+      listOfDrinks: []
     };
 
     this.addItemToBar = this.addItemToBar.bind(this);
@@ -561,12 +501,8 @@ class Landing extends Component {
     this.componentDidMount = this.componentDidMount.bind(this);
     this.renderCompleteDrinkInfo = this.renderCompleteDrinkInfo.bind(this);
     this.clearIngredients = this.clearIngredients.bind(this);
-    // this.getFullDrinkInfo = this.getFullDrinkInfo.bind(this);
-
     this.findRandomDrink = this.findRandomDrink.bind(this);
     this.findTopCocktails = this.findTopCocktails.bind(this);
-
-
   }
 
   componentDidMount(){
@@ -579,7 +515,6 @@ class Landing extends Component {
           count++;
         }
       }
-
       this.setState({
         Vodka: JSON.parse(response.data[0].Vodka),
         Gin: JSON.parse(response.data[0].Gin),
@@ -1058,7 +993,6 @@ class Landing extends Component {
         Whisky: JSON.parse(response.data[0].Whisky),
         ingredientCounter: count
       })
-
     })
     .catch(error => {
       // handle error
@@ -1067,7 +1001,6 @@ class Landing extends Component {
     .finally(() => {
       // always executed
     });
-
   }
 
   addItemToBar(event){
@@ -1087,7 +1020,6 @@ class Landing extends Component {
       [event.target.id]: !this.state[event.target.id]
 
     });
-    // console.log(`The state of ${event.target.id} is ${this.state[event.target.id]}`)
   }
 
   clearIngredients(){
@@ -1572,27 +1504,17 @@ class Landing extends Component {
   }
 
   renderDrinkList(){
-
-
     let params = [];
-
     for (var key in this.state) {
       if(this.state[key] === true || this.state[key] === 'true') {
         params.push(key)
       }
     }
 
-    // let allDrinks = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic'
-    let search = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=' + params;
+    let searchAllAlcoholicDrinks = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic';
+    let searchDrinksByParameters = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=' + params;
 
-    // if (params.length < 1) {
-    //   console.log('no parameters')
-    // } else {
-    //   console.log(params.length)
-
-    // }
-
-    axios.get(search)
+    axios.get((params.length > 0) ? searchDrinksByParameters : searchAllAlcoholicDrinks)
     .then(response => {
       // handle success
       console.log('response: ', response)

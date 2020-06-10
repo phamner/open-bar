@@ -15,26 +15,29 @@ const Button = styled.button`
 
 
 const DrinkList = function(props){
-  console.log('PROPS IN DRINKLIST: ', props)
+  // console.log('PROPS IN DRINKLIST: ', props)
 
-    // if (props.listOfDrinks.length > 0 || props.listOfDrinks === undefined){
+    if (props.listOfDrinks.length > 0 && props.listOfDrinks !== "None Found"){
       return(
         <div>
 
           <Button onClick={props.renderLanding}>Return to Ingredients</Button>
 
-          {props.listOfDrinks.map(drink => <Drink drink={drink} renderCompleteDrinkInfo={props.renderCompleteDrinkInfo} key={props.listOfDrinks.idDrink}/>)}
+          {props.listOfDrinks.map(drink => <Drink drink={drink} renderCompleteDrinkInfo={props.renderCompleteDrinkInfo} key={drink.idDrink.toString()} />)}
 
         </div>
       )
     }
-    // else {
-    //   return(
-    //     <div>
-    //       No Drinks
-    //     </div>
-    //   )
-    // }
-    // }
+    else {
+      return(
+        <div>
+          No Drinks
+        </div>
+      )
+
+    }
+}
 
 export default DrinkList;
+
+// key={props.listOfDrinks.idDrink}
