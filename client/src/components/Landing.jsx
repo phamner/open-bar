@@ -1681,7 +1681,7 @@ class Landing extends Component {
           {/* <h1>
           Open Bar
           </h1> */}
-          <CompleteDrinkInfo renderLanding={this.renderLanding} selectedItem={this.state.selectedItem} renderDrinkList={this.renderDrinkList}/>
+          <CompleteDrinkInfo renderLanding={this.renderLanding} selectedItem={this.state.selectedItem} renderDrinkList={this.renderDrinkList} findRandomDrink={this.findRandomDrink}/>
         </div>
       )
     }

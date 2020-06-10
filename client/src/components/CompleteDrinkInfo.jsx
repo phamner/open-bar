@@ -5,10 +5,10 @@ const Button = styled.button`
   background: "white";
   color:  "white";
   font-size: 1em;
-  margin: 3px;
   padding: 0.25em 1em;
   border: 2px solid palevioletred;
   border-radius: 3px;
+  margin: 3px;
 `;
 
 const Image = styled.img`
@@ -16,6 +16,7 @@ const Image = styled.img`
   display: block;
   position: relative;
   cursor: pointer;
+  margin-top: 20px;
   margin-bottom: 3px;
 `;
 
@@ -30,30 +31,32 @@ const Image = styled.img`
 //   border-radius: 3px;
 // `;
 
+const Div = styled.div`
+margin: 20px;
+`
+
 
 const CompleteDrinkInfo = function(props){
+  console.log('DATA WE ARE GETTING IN COMPLETEDRINKINFO: ', props.selectedItem.strAlcoholic)
   return(
-    <div>
-      <h2>{props.selectedItem.strDrink}</h2>
+    <Div>
+      <h2>{props.selectedItem.strDrink} ({props.selectedItem.strAlcoholic})</h2>
       <Button onClick={props.renderDrinkList}>Return to Drink list</Button>
       <Button onClick={props.renderLanding}>Return to Ingredients</Button>
+      <Button onClick={props.findRandomDrink}>Random Drink</Button>
 
       <br />
       <Image src={props.selectedItem.strDrinkThumb} alt="Logo"/>
-      <p>Instructions: {props.selectedItem.strInstructions}</p>
-      <p>Ingredients:</p>
-      <p>{props.selectedItem.strIngredient1}</p>
-      <p>{props.selectedItem.strIngredient2}</p>
-      <p>{props.selectedItem.strIngredient3}</p>
-      <p>{props.selectedItem.strIngredient4}</p>
-      <p>{props.selectedItem.strIngredient5}</p>
-      <p>{props.selectedItem.strIngredient6}</p>
-      {/* {console.log(props.selectedItem)} */}
-
-
-      {/* {console.log(props.selectedItem)} */}
-    </div>
-
+      <h4>Instructions: </h4>
+      <ol>{props.selectedItem.strInstructions}</ol>
+      <h4>Ingredients:</h4>
+      <ol>{props.selectedItem.strIngredient1}</ol>
+      <ol>{props.selectedItem.strIngredient2}</ol>
+      <ol>{props.selectedItem.strIngredient3}</ol>
+      <ol>{props.selectedItem.strIngredient4}</ol>
+      <ol>{props.selectedItem.strIngredient5}</ol>
+      <ol>{props.selectedItem.strIngredient6}</ol>
+    </Div>
   )
 }
 

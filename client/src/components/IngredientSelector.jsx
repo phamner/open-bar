@@ -40,7 +40,7 @@ const Navbar = styled.div`
 
 const Main = styled.div`
   padding: 16px;
-  margin-top: 165px;
+  margin-top: 140px;
 `
 
 const Filter = styled.div`

@@ -5,7 +5,7 @@ const Button = styled.div`
   background: ${props => props.trueOrFalse ? "palevioletred" : "white"};
   color: ${props => props.trueOrFalse ? "white" : "palevioletred"};
 
-  font-size: 1em;
+  font-size: 1.5em;
   margin: 0px;
   padding: 0.25em 1em;
   // border: 2px solid palevioletreds;
