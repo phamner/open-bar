@@ -32,6 +32,7 @@ const DrinkList = function(props){
       return(
         <div>
           No Drinks
+          <Button onClick={props.renderLanding}>Return to Ingredients</Button>
         </div>
       )
 
