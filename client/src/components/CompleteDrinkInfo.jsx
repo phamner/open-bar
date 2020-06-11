@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import CompleteDrinkIngredients from './CompleteDrinkIngredients.jsx';
 
 const Button = styled.button`
   background: "white";
@@ -37,7 +38,37 @@ margin: 20px;
 
 
 const CompleteDrinkInfo = function(props){
-  console.log('DATA WE ARE GETTING IN COMPLETEDRINKINFO: ', props.selectedItem.strAlcoholic)
+  console.log('All ingredients IN COMPLETEDRINKINFO: ', props.allIngredients)
+  let allSelectedIngredients = [];
+  // let allIngredients = [];
+  // let allQuantities = [];
+  let arrayOfObjs = [];
+
+
+  for (var key in props.allIngredients) {
+    if (props.allIngredients[key] === true) {
+      allSelectedIngredients.push(key)
+    }
+  }
+
+  for (var i = 1; i < 16; i++){
+    let tempObj = {}
+    let number = 1;
+    let currentIngredient = props.selectedItem[`strIngredient${i}`];
+    let currentQuantity = props.selectedItem[`strMeasure${i}`];
+    if (currentIngredient !== null) {
+      tempObj['quantity'] = currentQuantity;
+      tempObj['ingredient'] = currentIngredient;
+      arrayOfObjs.push(tempObj)
+    }
+    // allIngredients.push(currentIngredient);
+    // allQuantities.push(currentQuantity);
+  }
+
+  // console.log('all ingredients; ', allIngredients, 'all qquanitites: ', allQuantities)
+  console.log('DATA OBJECT: ', arrayOfObjs)
+  // console.log('chck for all ingredients', props.selectedItem)
+
   return(
     <Div>
       <h2>{props.selectedItem.strDrink} ({props.selectedItem.strAlcoholic})</h2>
@@ -50,12 +81,9 @@ const CompleteDrinkInfo = function(props){
       <h4>Instructions: </h4>
       <ol>{props.selectedItem.strInstructions}</ol>
       <h4>Ingredients:</h4>
-      <ol>{props.selectedItem.strIngredient1}</ol>
-      <ol>{props.selectedItem.strIngredient2}</ol>
-      <ol>{props.selectedItem.strIngredient3}</ol>
-      <ol>{props.selectedItem.strIngredient4}</ol>
-      <ol>{props.selectedItem.strIngredient5}</ol>
-      <ol>{props.selectedItem.strIngredient6}</ol>
+
+      {arrayOfObjs.map(ingredient => <CompleteDrinkIngredients ingredient={ingredient} />)}
+
     </Div>
   )
 }

@@ -15,7 +15,7 @@ const Button = styled.button`
 
 
 const DrinkList = function(props){
-  // console.log('PROPS IN DRINKLIST: ', props)
+  console.log('PROPS IN DRINKLIST: ', props)
 
     if (props.listOfDrinks.length > 0 && props.listOfDrinks !== "None Found"){
       return(
