@@ -66,8 +66,8 @@ const CompleteDrinkInfo = function(props){
   }
 
   // console.log('all ingredients; ', allIngredients, 'all qquanitites: ', allQuantities)
-  console.log('DATA OBJECT: ', arrayOfObjs)
-  // console.log('chck for all ingredients', props.selectedItem)
+  // console.log('DATA OBJECT: ', arrayOfObjs)
+  // console.log('all selected ingredients', allSelectedIngredients)
 
   return(
     <Div>
@@ -82,7 +82,7 @@ const CompleteDrinkInfo = function(props){
       <ol>{props.selectedItem.strInstructions}</ol>
       <h4>Ingredients:</h4>
 
-      {arrayOfObjs.map(ingredient => <CompleteDrinkIngredients ingredient={ingredient} />)}
+      {arrayOfObjs.map(ingredient => <CompleteDrinkIngredients ingredient={ingredient} allSelectedIngredients={allSelectedIngredients} />)}
 
     </Div>
   )
