@@ -22,6 +22,8 @@ const Navbar = styled.div`
   left: 0;
   width: 100%;
 `
+// background-image: url("images/paper.gif");
+
 
 // const A = styled.div`
 //   float: left;

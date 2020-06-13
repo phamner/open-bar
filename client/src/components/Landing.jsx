@@ -1630,6 +1630,9 @@ class Landing extends Component {
     .catch(function (error) {
       console.log(error);
     });
+    alert(`${this.state.selectedItem.strDrink} has been added to your list of favorite drinks!`);
+
+
 
   }
 
