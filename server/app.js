@@ -4,7 +4,7 @@ const port = 3000;
 const path = require('path');
 const bodyParser = require('body-parser');
 
-const { getAllDrinks, getAllIngredients, populateArrayWithDrinks, updateIngredients } = require('../database/index.js');
+const { getAllDrinks, getAllIngredients, populateArrayWithDrinks, updateIngredients, addFavorite, getFavorites } = require('../database/index.js');
 
 
 
@@ -34,6 +34,26 @@ app.post('/ingredients', function (req, res) {
   res.send('POST request to the server');
   let state = req.body;
   updateIngredients(state)
+})
+
+app.post('/favorites', function (req, res) {
+  res.send(req.body);
+  let favDrink = req.body;
+  // console.log('drink info that appears in the server: ', favDrink)
+
+  addFavorite(favDrink)
+})
+
+// app.get('/favorites', function (req, res) {
+//   getFavorites((data) => {
+//     res.send(data);
+//   })
+// }
+
+app.get('/favorites', function (req, res) {
+  getFavorites((data) => {
+    res.send(data);
+  });
 })
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))

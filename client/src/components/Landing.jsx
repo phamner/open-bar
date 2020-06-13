@@ -1605,7 +1605,14 @@ class Landing extends Component {
   }
 
   saveToMyFavorites(){
-    console.log('saved to my favorites', this.state.selectedItem)
+    // console.log('saved to my favorites', this.state.selectedItem)
+    axios.post('/favorites', this.state.selectedItem)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
   }
 
