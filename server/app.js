@@ -44,12 +44,6 @@ app.post('/favorites', function (req, res) {
   addFavorite(favDrink)
 })
 
-// app.get('/favorites', function (req, res) {
-//   getFavorites((data) => {
-//     res.send(data);
-//   })
-// }
-
 app.get('/favorites', function (req, res) {
   getFavorites((data) => {
     res.send(data);

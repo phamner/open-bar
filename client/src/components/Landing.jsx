@@ -1601,7 +1601,24 @@ class Landing extends Component {
   }
 
   findMyFavorites(){
-    console.log('find my favorites')
+    // console.log('find my favorites')
+    axios.get('/favorites')
+    .then((response) => {
+      // handle success
+      console.log(response.data);
+      this.setState({
+        listOfDrinks: response.data,
+        Page: 'DrinkList'
+      })
+    })
+    .catch( (error) => {
+      // handle error
+      console.log(error);
+    })
+    .then( () => {
+      // always executed
+    });
+
   }
 
   saveToMyFavorites(){
@@ -1694,7 +1711,8 @@ class Landing extends Component {
           renderLanding={this.renderLanding}
           selectedItem={this.state.selectedItem}
           listOfDrinks={this.state.listOfDrinks}
-          renderCompleteDrinkInfo={this.renderCompleteDrinkInfo}/>
+          renderCompleteDrinkInfo={this.renderCompleteDrinkInfo}
+          findMyFavorites={this.findMyFavorites}/>
         </div>
       )
     } else if (this.state.Page === 'CompleteDrinkInfo') {
@@ -1703,7 +1721,15 @@ class Landing extends Component {
           {/* <h1>
           Open Bar
           </h1> */}
-          <CompleteDrinkInfo renderLanding={this.renderLanding} selectedItem={this.state.selectedItem} renderDrinkList={this.renderDrinkList} findRandomDrink={this.findRandomDrink} allIngredients={this.state} saveToMyFavorites={this.saveToMyFavorites}/>
+          <CompleteDrinkInfo
+          renderLanding={this.renderLanding}
+          selectedItem={this.state.selectedItem}
+          renderDrinkList={this.renderDrinkList}
+          findRandomDrink={this.findRandomDrink}
+          allIngredients={this.state}
+          saveToMyFavorites={this.saveToMyFavorites}
+          findMyFavorites={this.findMyFavorites}
+          />
         </div>
       )
     }

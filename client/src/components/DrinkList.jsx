@@ -22,6 +22,8 @@ const DrinkList = function(props){
         <div>
 
           <Button onClick={props.renderLanding}>Return to Ingredients</Button>
+          <Button onClick={props.findMyFavorites}>My Favorites</Button>
+
 
           {props.listOfDrinks.map(drink => <Drink drink={drink} renderCompleteDrinkInfo={props.renderCompleteDrinkInfo} key={drink.idDrink.toString()} />)}
 

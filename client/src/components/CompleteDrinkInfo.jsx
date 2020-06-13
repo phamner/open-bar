@@ -75,7 +75,9 @@ const CompleteDrinkInfo = function(props){
       <Button onClick={props.renderDrinkList}>Return to Drink list</Button>
       <Button onClick={props.renderLanding}>Return to Ingredients</Button>
       <Button onClick={props.findRandomDrink}>Random Drink</Button>
-      <Button onClick={props.saveToMyFavorites}>saveToMyFavorites</Button>
+      <Button onClick={props.saveToMyFavorites}>Save To My Favorites</Button>
+      <Button onClick={props.findMyFavorites}>My Favorites</Button>
+
 
       {/* {strDrink: "3-Mile Long Island Iced Tea", strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/rrtssw1472668972.jpg", idDrink: "15300"} */}
 
