@@ -1,4 +1,4 @@
-const { drinks } = require('./allDrinks.js');
+// const { drinks } = require('./allDrinks.js');
 const request = require('request');
 
 //Mongoose:
@@ -492,7 +492,6 @@ var ingredientSchema = new mongoose.Schema({
 })
 var Ingredient = mongoose.model('Ingredient', ingredientSchema);
 
-
 var drinkSchema = new mongoose.Schema({
   idDrink: String,
   strDrink: String,
@@ -615,6 +614,9 @@ module.exports = {
       }
     })
   }
+  // addFavorite: () => {
+  //   // db.collection.update(doc, doc, {upsert:true})
+  // }
 }
 
 

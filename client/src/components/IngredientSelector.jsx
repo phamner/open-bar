@@ -68,6 +68,8 @@ const IngredientSelector = function(props){
           <Button onClick={props.renderDrinkList}>Order Up!</Button>
           <Button onClick={props.findRandomDrink}>Random Drink</Button>
           <Button onClick={props.findTopCocktails}>Classic Drinks</Button>
+          <Button onClick={props.findMyFavorites}>My Favorites</Button>
+
           <Filter>
             <form>
               Filter Ingredients ({props.ingredients.ingredientCounter} currently selected): <input type="text" name="name" onChange={props.handleFilterChange}/>

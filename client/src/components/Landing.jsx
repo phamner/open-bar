@@ -490,7 +490,8 @@ class Landing extends Component {
       Page: 'Landing',
       ingredientCounter: 0,
       selectedItem: {},
-      listOfDrinks: []
+      listOfDrinks: [],
+      listOfSavedDrinks: []
     };
 
     this.addItemToBar = this.addItemToBar.bind(this);
@@ -503,6 +504,10 @@ class Landing extends Component {
     this.clearIngredients = this.clearIngredients.bind(this);
     this.findRandomDrink = this.findRandomDrink.bind(this);
     this.findTopCocktails = this.findTopCocktails.bind(this);
+    this.findMyFavorites = this.findMyFavorites.bind(this);
+    this.saveToMyFavorites = this.saveToMyFavorites.bind(this);
+
+
   }
 
   componentDidMount(){
@@ -1511,7 +1516,7 @@ class Landing extends Component {
       }
     }
 
-    let searchAllAlcoholicDrinks = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic';
+    let searchAllAlcoholicDrinks = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?a=Alcoholic';
     let searchDrinksByParameters = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=' + params;
 
     axios.get((params.length > 0) ? searchDrinksByParameters : searchAllAlcoholicDrinks)
@@ -1571,7 +1576,7 @@ class Landing extends Component {
   }
 
   findRandomDrink(){
-    axios.get('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+    axios.get('https://www.thecocktaildb.com/api/json/v2/9973533/random.php')
     .then( (response) => {
 
       console.log(response.data.drinks[0])
@@ -1592,6 +1597,15 @@ class Landing extends Component {
     this.setState({
       Page: 'CompleteDrinkInfo'
     })
+
+  }
+
+  findMyFavorites(){
+    console.log('find my favorites')
+  }
+
+  saveToMyFavorites(){
+    console.log('saved to my favorites', this.state.selectedItem)
 
   }
 
@@ -1659,7 +1673,8 @@ class Landing extends Component {
             saveIngredients={this.saveIngredients}
             clearIngredients={this.clearIngredients}
             findRandomDrink={this.findRandomDrink}
-            findTopCocktails={this.findTopCocktails}/>
+            findTopCocktails={this.findTopCocktails}
+            findMyFavorites={this.findMyFavorites}/>
         </div>
       )
     } else if (this.state.Page === 'DrinkList') {
@@ -1681,7 +1696,7 @@ class Landing extends Component {
           {/* <h1>
           Open Bar
           </h1> */}
-          <CompleteDrinkInfo renderLanding={this.renderLanding} selectedItem={this.state.selectedItem} renderDrinkList={this.renderDrinkList} findRandomDrink={this.findRandomDrink} allIngredients={this.state}/>
+          <CompleteDrinkInfo renderLanding={this.renderLanding} selectedItem={this.state.selectedItem} renderDrinkList={this.renderDrinkList} findRandomDrink={this.findRandomDrink} allIngredients={this.state} saveToMyFavorites={this.saveToMyFavorites}/>
         </div>
       )
     }
