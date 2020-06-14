@@ -4,7 +4,7 @@ Users can save their favorite drinks to mongodb database for future reference.
 Pictures, ingredients (dynamically indicate whether the user has them), & instructions are provided on the product page for each drink.
 Users can filter drinks by 'Random', 'Classic Drinks,' or 'Favorites.'
 
-![](superConnector.gif)
+![](https://giphy.com/create/gifmaker/decorate/caption)
 
 This MVP project was designed and built under 72 hours to illustrate the bare-bone concept. You can find the [full video demo here](https://www.youtube.com/watch?v=-0-RgB52yoM).
 
