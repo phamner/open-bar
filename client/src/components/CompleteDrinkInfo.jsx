@@ -21,29 +21,37 @@ const Image = styled.img`
   margin-bottom: 3px;
 `;
 
-// const Ingredient = styled.button`
-//   background: ${props => props.primary ? "palevioletred" : "white"};
-//   color: ${props => props.primary ? "white" : "palevioletred"};
-
-//   font-size: 1em;
-//   margin: 1em;
-//   padding: 0.25em 1em;
-//   border: 2px solid palevioletred;
-//   border-radius: 3px;
-// `;
-
 const Div = styled.div`
 margin: 20px;
 `
 
+const Navbar = styled.div`
+  overflow: hidden;
+  background-color: #F4DDD8;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+`
+
+const Main = styled.div`
+  padding: 16px;
+  margin: 40px;
+
+  margin-top: 140px;
+`
+
+const Elements = styled.div`
+// width: 50%;
+// margin: 0 auto;
+  margin-left: 40px
+`
+
 
 const CompleteDrinkInfo = function(props){
-  console.log('All ingredients IN COMPLETEDRINKINFO: ', props.allIngredients)
   let allSelectedIngredients = [];
-  // let allIngredients = [];
-  // let allQuantities = [];
   let arrayOfObjs = [];
-
 
   for (var key in props.allIngredients) {
     if (props.allIngredients[key] === true) {
@@ -61,36 +69,30 @@ const CompleteDrinkInfo = function(props){
       tempObj['ingredient'] = currentIngredient;
       arrayOfObjs.push(tempObj)
     }
-    // allIngredients.push(currentIngredient);
-    // allQuantities.push(currentQuantity);
   }
-
-  // console.log('all ingredients; ', allIngredients, 'all qquanitites: ', allQuantities)
-  // console.log('DATA OBJECT: ', arrayOfObjs)
-  // console.log('all selected ingredients', allSelectedIngredients)
-
   return(
-    <Div>
-      <h2>{props.selectedItem.strDrink} ({props.selectedItem.strAlcoholic})</h2>
-      <Button onClick={props.renderDrinkList}>Return to Drink list</Button>
-      <Button onClick={props.renderLanding}>Return to Ingredients</Button>
-      <Button onClick={props.findRandomDrink}>Random Drink</Button>
-      <Button onClick={props.saveToMyFavorites}>Save To My Favorites</Button>
-      <Button onClick={props.findMyFavorites}>My Favorites</Button>
+    <div>
+      <Navbar>
+        <Elements>
+          <h1>Open Bar   -    {props.selectedItem.strDrink} ({props.selectedItem.strAlcoholic})</h1>
+          <Button onClick={props.renderDrinkList}>Return to Drink list</Button>
+          <Button onClick={props.renderLanding}>Return to Ingredients</Button>
+          <Button onClick={props.findRandomDrink}>Random Drink</Button>
+          <Button onClick={props.saveToMyFavorites}>Save To My Favorites</Button>
+          <Button onClick={props.findMyFavorites}>My Favorites</Button>
+        </Elements>
+      </Navbar>
 
+      <Main>
+        <br />
+        <Image src={props.selectedItem.strDrinkThumb} alt="Logo"/>
+        <h4>Instructions: </h4>
+        <ol>{props.selectedItem.strInstructions}</ol>
+        <h4>Ingredients:</h4>
 
-      {/* {strDrink: "3-Mile Long Island Iced Tea", strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/rrtssw1472668972.jpg", idDrink: "15300"} */}
-
-
-      <br />
-      <Image src={props.selectedItem.strDrinkThumb} alt="Logo"/>
-      <h4>Instructions: </h4>
-      <ol>{props.selectedItem.strInstructions}</ol>
-      <h4>Ingredients:</h4>
-
-      {arrayOfObjs.map(ingredient => <CompleteDrinkIngredients ingredient={ingredient} allSelectedIngredients={allSelectedIngredients} />)}
-
-    </Div>
+        {arrayOfObjs.map(ingredient => <CompleteDrinkIngredients ingredient={ingredient} allSelectedIngredients={allSelectedIngredients} />)}
+      </Main>
+    </div>
   )
 }
 

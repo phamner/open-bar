@@ -21,19 +21,8 @@ const Navbar = styled.div`
   top: 0;
   left: 0;
   width: 100%;
+  height: 150px;
 `
-// background-image: url("images/paper.gif");
-
-
-// const A = styled.div`
-//   float: left;
-//   display: block;
-//   color: #f2f2f2;
-//   text-align: center;
-//   padding: 14px 16px;
-//   text-decoration: none;
-//   font-size: 17px;
-// `
 
 // .navbar a:hover {
 //   background: #ddd;
