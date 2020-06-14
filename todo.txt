@@ -2,10 +2,13 @@
 Todo:
 1. [DONE] complete filter functionality
 2. [DONE] write routes to save current selection to db, and retrieve it when the page loads.
-3. [] build new page for list of drinks
-4. [] build product page.
+3. [DONE] build new page for list of drinks
+4. [DONE] build product page.
 5. [DONE] build 'back' buttons?
-6. [] fun with CSS!
+6. [DONE] fun with CSS!
+
+
+
 
 
 
